@@ -1,0 +1,8 @@
+<button
+[ngClass]="{'custom-button': true, 'disabled': disabled, 'small': size === 'small', 'medium': size === 'medium', 'large': size === 'large'}"
+[style.background-color]="getButtonColor()"
+[disabled]="disabled"
+(click)="onClick()"
+>
+  <ng-content></ng-content>
+</button>
