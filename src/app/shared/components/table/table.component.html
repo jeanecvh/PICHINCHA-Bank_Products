@@ -13,7 +13,7 @@
       <tr class="table-row" *ngFor="let row of rows">
         <td *ngFor="let column of columns">
           <ng-container *ngIf="column.property === 'logo'; else defaultTemplate">
-            <img [src]="row[column.property]" alt="Logo">
+            <img class= 'img' [src]="row[column.property]" alt="Logo">
           </ng-container>
           <ng-template #defaultTemplate>
             {{ row[column.property] }}
