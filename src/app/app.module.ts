@@ -5,12 +5,12 @@ import { ProductsComponent } from './pages/products/products.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProductFormComponent } from './pages/products/product-form/product-form.component';
+import { FormularioComponent } from './pages/formulario/formulario.component';
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    ProductFormComponent
+    FormularioComponent
   ],
   imports: [
     BrowserModule,
