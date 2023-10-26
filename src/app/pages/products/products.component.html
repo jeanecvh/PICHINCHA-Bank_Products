@@ -1,5 +1,15 @@
+<app-button
+buttonColor="secondary"
+size="medium"
+[disabled]="false"
+(clicked)="handleButtonClick()">
+  Agregar
+</app-button>
 <app-table
-[columns]="tableColumns"
-[rows]="data"
+  [columns]="tableColumns"
+  [rows]="data"
+  [dropdownIconClass]="dropdownIconClass"
+  [columnIconClass]="columnIconClass"
+  (edit)="editRow($event)"
+  (delete)="deleteRow($event)"
 ></app-table>
-<h1>TEST</h1>
