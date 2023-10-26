@@ -1,0 +1,34 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr class="table-row">
+        <th *ngFor="let column of columns">
+          {{ column.label }}
+          <span *ngIf="column.showIcon" [class]="columnIconClass" class="span"></span>
+        </th>
+        <th class="acciones"></th> <!-- Nueva columna para el ícono y menú desplegable -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-row" *ngFor="let row of rows">
+        <td *ngFor="let column of columns">
+          <ng-container *ngIf="column.property === 'logo'; else defaultTemplate">
+            <img [src]="row[column.property]" alt="Logo">
+          </ng-container>
+          <ng-template #defaultTemplate>
+            {{ row[column.property] }}
+          </ng-template>
+        </td>
+        <td>
+          <div class="actions-dropdown">
+            <i [class]="dropdownIconClass" (click)="toggleDropdown(row)" class="i"></i>
+            <div class="dropdown-menu" *ngIf="row.showDropdown">
+              <div (click)="editRow(row)">Editar</div>
+              <div (click)="deleteRow(row)">Borrar</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

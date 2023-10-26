@@ -1,0 +1,32 @@
+.table-container {
+  display: table;
+  margin: 0 auto;
+  font-family: Arial;
+  color: #3d3d40
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  text-align: center;
+  padding: 20px;
+}
+
+.table-container th {
+  background-color: #f9fafc;
+}
+
+.table-container .table-row {
+  border-bottom: 1px solid #ccc;
+}
+
+.span,
+.i{
+  color:#929296
+}
+
+
