@@ -1,85 +1,113 @@
-<form class="form" [formGroup]="registroForm" (ngSubmit)="submitForm()">
-  <div class="inputs">
-    <div class="div-input">
-      <label for="id">Id:</label>
-      <input div type="text" id="id" formControlName="id" />
-      <div *ngIf="this.registroForm.invalid && (id.dirty || id.touched)">
-        <div class="error-message" *ngIf="id.errors?.required">
-          El Id es requerido.
-        </div>
-        <div class="error-message" *ngIf="id.errors?.minlength">
-          El Id debe tener al menos 3 caracteres.
-        </div>
-        <div class="error-message" *ngIf="id.errors?.maxlength">
-          El Id debe tener como máximo 10 caracteres.
-        </div>
-        <div class="error-message" *ngIf="id.errors?.invalidId">
-          El Id no es válido.
-        </div>
-      </div>
-    </div>
-
-    <div class="div-input">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" formControlName="nombre" />
-      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-        <div *ngIf="nombre.errors?.required">El Nombre es requerido.</div>
-        <div *ngIf="nombre.errors?.minlength">
-          El Nombre debe tener al menos 5 caracteres.
-        </div>
-        <div *ngIf="nombre.errors?.maxlength">
-          El Nombre debe tener como máximo 100 caracteres.
-        </div>
-      </div>
-    </div>
-
-    <div class="div-input">
-      <label for="descripcion">Descripción:</label>
-      <textarea id="descripcion" formControlName="descripcion"></textarea>
-      <div
-        *ngIf="
-          descripcion.invalid && (descripcion.dirty || descripcion.touched)
-        "
-      >
-        <div *ngIf="descripcion.errors?.required">
-          La Descripción es requerida.
-        </div>
-        <div *ngIf="descripcion.errors?.minlength">
-          La Descripción debe tener al menos 10 caracteres.
-        </div>
-        <div *ngIf="descripcion.errors?.maxlength">
-          La Descripción debe tener como máximo 200 caracteres.
-        </div>
-      </div>
-    </div>
-
-    <div class="div-input">
-      <label for="logo">Logo:</label>
-      <input type="file" id="logo" formControlName="logo" />
-      <div *ngIf="logo.invalid && (logo.dirty || logo.touched)">
-        <div *ngIf="logo.errors?.required">El Logo es requerido.</div>
-      </div>
-    </div>
-
-    <div class="div-input">
-      <label for="fechaLiberacion">Fecha de Liberación:</label>
-      <input
-        type="date"
-        id="fechaLiberacion"
-        formControlName="fechaLiberacion"
-        value="date:'dd/MM/yyyy'"
-      />
-    </div>
-
-    <div class="div-input">
-      <label for="fechaRevision">Fecha de Revisión:</label>
-      <input
-        [value]="this.oneYearAfter"
-        id="fechaRevision"
-        formControlName="fechaRevision"
-        [disabled]="true"
-      />
-    </div>
+<div class="form">
+  <div class="title-container">
+    <H1>Formulario de Registro</H1>
   </div>
-  <button type="submit" [disabled]="registroForm.invalid">Registrar</button>
-</form>
+  <hr>
+  <div class="form-container">
+    <form  [formGroup]="registroForm" (ngSubmit)="submitForm()">
+      <div class="inputs">
+        <div class="div-input" [ngClass]="{ 'error': id.invalid && (id.dirty || id.touched)}">
+          <label for="id">ID:</label>
+          <input div type="text" id="id" formControlName="id" />
+          <div *ngIf="this.registroForm.invalid && (id.dirty || id.touched)">
+            <div class="error-message" *ngIf="id.errors?.required">
+              El ID es requerido.
+            </div>
+            <div class="error-message" *ngIf="id.errors?.minlength">
+              El ID debe tener al menos 3 caracteres.
+            </div>
+            <div class="error-message" *ngIf="id.errors?.maxlength">
+              El ID debe tener como máximo 10 caracteres.
+            </div>
+            <div class="error-message" *ngIf="id.errors?.invalidId">
+              El ID no es válido.
+            </div>
+          </div>
+        </div>
+
+        <div class="div-input" [ngClass]="{ 'error': nombre.invalid && (nombre.dirty || nombre.touched)}">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" formControlName="nombre" />
+          <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <div class="error-message" *ngIf="nombre.errors?.required">El nombre es requerido.</div>
+            <div class="error-message" *ngIf="nombre.errors?.minlength">
+              El nombre debe tener al menos 5 caracteres.
+            </div>
+            <div class="error-message" *ngIf="nombre.errors?.maxlength">
+              El nombre debe tener como máximo 100 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="div-input" [ngClass]="{ 'error': descripcion.invalid && (descripcion.dirty || descripcion.touched)}">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" formControlName="descripcion"></textarea>
+          <div
+            *ngIf="
+              descripcion.invalid && (descripcion.dirty || descripcion.touched)
+            "
+          >
+            <div class="error-message" *ngIf="descripcion.errors?.required">
+              La descripción es requerida.
+            </div>
+            <div class="error-message" *ngIf="descripcion.errors?.minlength">
+              La descripción debe tener al menos 10 caracteres.
+            </div>
+            <div class="error-message" *ngIf="descripcion.errors?.maxlength">
+              La descripción debe tener como máximo 200 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="div-input" [ngClass]="{ 'error': logo.invalid && (logo.dirty || logo.touched)}">
+          <label for="logo">Logo:</label>
+          <input type="text" id="logo" formControlName="logo" />
+          <div *ngIf="logo.invalid && (logo.dirty || logo.touched)">
+            <div class="error-message" *ngIf="logo.errors?.required">El logo es requerido.</div>
+          </div>
+        </div>
+
+        <div class="div-input" [ngClass]="{ 'error': fechaLiberacion.invalid && (fechaLiberacion.dirty || fechaLiberacion.touched)}">
+          <label for="fechaLiberacion">Fecha de Liberación:</label>
+          <input
+            type="date"
+            id="fechaLiberacion"
+            formControlName="fechaLiberacion"
+            value="date:'dd/MM/yyyy'"
+          />
+          <div *ngIf="fechaLiberacion.invalid && (fechaLiberacion.dirty || fechaLiberacion.touched)">
+            <div class="error-message" *ngIf="logo.errors?.required">La fecha de liberación es requerida.</div>
+          </div>
+        </div>
+
+        <div class="div-input">
+          <label for="fechaRevision">Fecha de Revisión:</label>
+          <input
+            type="text"
+            [value]="this.oneYearAfter"
+            id="fechaRevision"
+            formControlName="fechaRevision"
+            [disabled]="true"
+          />
+        </div>
+      </div>
+      <div class="container-buttons">
+        <app-button
+        buttonColor="secondary"
+        size="medium"
+        [disabled]="false"
+        >
+          Reiniciar
+        </app-button>
+        <app-button
+        buttonColor="primary"
+        size="medium"
+        [disabled]="registroForm.invalid"
+        >
+          Enviar
+        </app-button>
+      </div>
+
+    </form>
+  </div>
+</div>

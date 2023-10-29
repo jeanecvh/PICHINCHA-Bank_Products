@@ -5,9 +5,10 @@
   text-decoration: none;
   cursor: pointer;
   border: none;
-  color: #3d3d40;
+  color: #141435;
   height: 55px;
   border-radius: 5px;
+  margin: 12px;
 
   /* Estilo de interacción del botón */
   transition: background-color 0.3s ease;
@@ -26,7 +27,7 @@
 .custom-button.medium {
   /* Estilo de tamaño del botón mediano */
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .custom-button.large {

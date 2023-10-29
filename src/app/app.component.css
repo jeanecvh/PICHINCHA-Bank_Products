@@ -9,8 +9,8 @@ main {
 
 .content-container {
   max-width: 800px; /* Ajusta el valor según tus necesidades */
-  width: 100%;
   padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Media queries para hacerlo responsive */

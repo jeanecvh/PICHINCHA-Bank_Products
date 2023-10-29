@@ -11,6 +11,12 @@ body {
       background-color: #ffffff;
       padding: 20px;
       border-radius: 5px;
+      width: 38vw;
+}
+
+.title-container{
+  display: flex;
+  justify-content: space-around;
 }
 
 .inputs{
@@ -21,6 +27,7 @@ body {
 .div-input{
   display: flex;
   flex-direction: column;
+  margin: 12px;
 }
 
 label {
@@ -35,6 +42,7 @@ button[type="submit"] {
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  height: 40px;
 }
 
 input[type="file"] {
@@ -43,10 +51,26 @@ input[type="file"] {
 
 .error-message {
   color: red;
-  margin-top: 5px;
+  margin-top: -5px;
+  font-size: 10px;
 }
 
-button[type="submit"] {
+.error input,
+.error textarea{
+  border-color:  red;
+}
+
+input:focus {
+  outline: unset;
+}
+
+.container-buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/* button[type="submit"] {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -56,4 +80,6 @@ button[type="submit"] {
 button[type="submit"]:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
-}
+} */
+
+
