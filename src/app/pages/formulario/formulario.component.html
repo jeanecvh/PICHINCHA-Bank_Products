@@ -1,1 +1,85 @@
-<p>formulario works!</p>
+<form class="form" [formGroup]="registroForm" (ngSubmit)="submitForm()">
+  <div class="inputs">
+    <div class="div-input">
+      <label for="id">Id:</label>
+      <input div type="text" id="id" formControlName="id" />
+      <div *ngIf="this.registroForm.invalid && (id.dirty || id.touched)">
+        <div class="error-message" *ngIf="id.errors?.required">
+          El Id es requerido.
+        </div>
+        <div class="error-message" *ngIf="id.errors?.minlength">
+          El Id debe tener al menos 3 caracteres.
+        </div>
+        <div class="error-message" *ngIf="id.errors?.maxlength">
+          El Id debe tener como máximo 10 caracteres.
+        </div>
+        <div class="error-message" *ngIf="id.errors?.invalidId">
+          El Id no es válido.
+        </div>
+      </div>
+    </div>
+
+    <div class="div-input">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" formControlName="nombre" />
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+        <div *ngIf="nombre.errors?.required">El Nombre es requerido.</div>
+        <div *ngIf="nombre.errors?.minlength">
+          El Nombre debe tener al menos 5 caracteres.
+        </div>
+        <div *ngIf="nombre.errors?.maxlength">
+          El Nombre debe tener como máximo 100 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="div-input">
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" formControlName="descripcion"></textarea>
+      <div
+        *ngIf="
+          descripcion.invalid && (descripcion.dirty || descripcion.touched)
+        "
+      >
+        <div *ngIf="descripcion.errors?.required">
+          La Descripción es requerida.
+        </div>
+        <div *ngIf="descripcion.errors?.minlength">
+          La Descripción debe tener al menos 10 caracteres.
+        </div>
+        <div *ngIf="descripcion.errors?.maxlength">
+          La Descripción debe tener como máximo 200 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="div-input">
+      <label for="logo">Logo:</label>
+      <input type="file" id="logo" formControlName="logo" />
+      <div *ngIf="logo.invalid && (logo.dirty || logo.touched)">
+        <div *ngIf="logo.errors?.required">El Logo es requerido.</div>
+      </div>
+    </div>
+
+    <div class="div-input">
+      <label for="fechaLiberacion">Fecha de Liberación:</label>
+      <input
+        type="date"
+        id="fechaLiberacion"
+        formControlName="fechaLiberacion"
+        value="date:'dd/MM/yyyy'"
+      />
+    </div>
+
+    <div class="div-input">
+      <label for="fechaRevision">Fecha de Revisión:</label>
+      <input
+        [value]="this.oneYearAfter"
+        id="fechaRevision"
+        formControlName="fechaRevision"
+        [disabled]="true"
+      />
+    </div>
+  </div>
+  <button type="submit" [disabled]="registroForm.invalid">Registrar</button>
+</form>

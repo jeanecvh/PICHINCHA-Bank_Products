@@ -1,0 +1,59 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+.form {
+      flex-direction: row;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+}
+
+.inputs{
+  display: grid;
+  grid-template-columns: 1.4fr 1.3fr;
+}
+
+.div-input{
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+input[type="date"],
+button[type="submit"] {
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
