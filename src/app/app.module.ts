@@ -6,11 +6,20 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormularioComponent } from './pages/formulario/formulario.component';
+import { HeaderComponent } from './pages/components/header/header.component';
+import { FooterComponent } from './pages/components/footer/footer.component';
+import * as moment from 'moment';
+
+export function momentFactory() {
+  return moment;
+}
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    FormularioComponent
+    FormularioComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +27,9 @@ import { FormularioComponent } from './pages/formulario/formulario.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: 'moment', useFactory: momentFactory }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
