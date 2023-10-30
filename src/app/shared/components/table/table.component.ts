@@ -9,6 +9,7 @@ import { TableColumn } from 'src/app/data/models/table/table-column.model';
 export class TableComponent {
   @Input() columns: TableColumn[] = [];
   @Input() rows: any[] = [];
+  @Input() rowsLength: number
   @Input() dropdownIconClass: string = '';
   @Input() columnIconClass: string = '';
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();

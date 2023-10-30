@@ -9,6 +9,7 @@ import { FormularioComponent } from './pages/formulario/formulario.component';
 import { HeaderComponent } from './pages/components/header/header.component';
 import { FooterComponent } from './pages/components/footer/footer.component';
 import * as moment from 'moment';
+import { HttpClientModule, HttpHeaderResponse } from '@angular/common/http'
 
 export function momentFactory() {
   return moment;
@@ -25,7 +26,8 @@ export function momentFactory() {
     BrowserModule,
     SharedModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     { provide: 'moment', useFactory: momentFactory }

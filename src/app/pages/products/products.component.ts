@@ -1,52 +1,71 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductResponseDto } from 'src/app/data/models/products/product.model';
 import { TableColumn } from 'src/app/data/models/table/table-column.model';
+import { ProductsService } from 'src/app/data/services/products.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
+  products: ProductResponseDto[] = [];
   dropdownIconClass: string = 'fa-solid fa-ellipsis-vertical';
   columnIconClass: string = 'fa-solid fa-circle-exclamation';
-  data = [
-    {
-      logo: "https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg",
-      nombre: "Producto 1",
-      descripcion: "Descripción del Producto 1",
-      fechaLiberacion: "2023-01-01",
-      fechaRestructuracion: "2023-02-15"
-    },
-    {
-      logo: "https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg",
-      nombre: "Producto 2",
-      descripcion: "Descripción del Producto 2",
-      fechaLiberacion: "2023-03-01",
-      fechaRestructuracion: "2023-04-15"
-    },
-    // ...
-  ];
-
   tableColumns: TableColumn[] = [
-    { label: "Logo", property: "logo", showIcon:false },
-    { label: "Nombre del producto", property: "nombre", showIcon:false },
-    { label: "Descripción", property: "descripcion", showIcon:true },
-    { label: "Fecha de liberación", property: "fechaLiberacion", showIcon:true },
-    { label: "Fecha de restructuración", property: "fechaRestructuracion", showIcon:true }
+    { label: 'Logo', property: 'logo', showIcon: false },
+    { label: 'Nombre del producto', property: 'name', showIcon: false },
+    { label: 'Descripción', property: 'description', showIcon: true },
+    { label: 'Fecha de liberación', property: 'date_release', showIcon: true },
+    {
+      label: 'Fecha de restructuración',
+      property: 'date_revision',
+      showIcon: true,
+    },
   ];
 
+  constructor(public productService: ProductsService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.getBankProducts();
+  }
 
   editRow(row: any) {
-    // Lógica para editar la fila
+    let productsLocalStorage = localStorage.getItem('Products');
+    if (productsLocalStorage) {
+      const arrayProducts = JSON.parse(productsLocalStorage);
+      const idRow = arrayProducts.filter(
+        (obj: { id: any }) => obj.id === row.id
+      );
+      localStorage.setItem('FormId', JSON.stringify(idRow));
+      this.router.navigate(['/form']);
+    }
   }
 
   deleteRow(row: any) {
-    // Lógica para borrar la fila
+    this.productService.deleteProduct(row.id).subscribe({
+      next: () => {
+        this.getBankProducts();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
-  handleButtonClick(){
-    console.log("Boton");
+  redirecToForm() {
+    localStorage.removeItem('FormId');
+    localStorage.removeItem('Products');
+    this.router.navigate(['/form']);
   }
 
-
+  getBankProducts() {
+    this.productService.getAll().subscribe({
+      next: (response) => {
+        this.products = response;
+        localStorage.setItem('Products', JSON.stringify(response));
+      },
+    });
+  }
 }
