@@ -130,7 +130,18 @@ export class FormularioComponent implements OnInit {
       return this.registroForm.get('fechaRevision');
     }
 
+    public resetForm() {
+      if(localStorage.getItem('FormId')){
+        const idValue = this.registroForm.get('id').value;
+        this.registroForm.reset();
+        this.registroForm.get('id').setValue(idValue);
+        console.log('idValue',idValue);
 
+      } else {
+        this.registroForm.reset();
+      }
+
+    }
   }
 
 
