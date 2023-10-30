@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/data/services/products.service';
-
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -95,9 +94,9 @@ export class FormularioComponent implements OnInit {
     validateMinDate(control: AbstractControl): ValidationErrors | null {
       const fechaLiberacion = new Date(this.moment(this.registroForm?.controls['fechaLiberacion']?.value));
       const fechaRevision = new Date(fechaLiberacion.getFullYear() + 1, fechaLiberacion.getMonth(), fechaLiberacion.getDate());
-      const oneYearAfter= this.moment(fechaRevision).format('DD-MM-YYYY')
+      const oneYearAfter= this.moment(fechaRevision)?.format('DD-MM-YYYY')
       this.oneYearAfter = this.reemplazarGuionesPorBarras(oneYearAfter);
-      const oneYearRequest = this.moment(fechaRevision).format('YYYY-MM-DD')
+      const oneYearRequest = this.moment(fechaRevision)?.format('YYYY-MM-DD')
       this.oneYearAfterRequest = oneYearRequest
       return null;
     }

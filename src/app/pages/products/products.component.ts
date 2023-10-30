@@ -47,12 +47,9 @@ export class ProductsComponent implements OnInit {
     this.productService.deleteProduct(row.id).subscribe({
       next: () => {
         this.getBankProducts();
-        this.router.navigate(['']);
-        console.log('works delete');
-
       },
-      error: () => {
-        console.log('ERROR');
+      error: (error) => {
+        console.log(error);
       },
     });
   }
