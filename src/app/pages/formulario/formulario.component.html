@@ -4,11 +4,11 @@
   </div>
   <hr>
   <div class="form-container">
-    <form  [formGroup]="registroForm" (ngSubmit)="submitForm()">
+    <form  [formGroup]="registroForm">
       <div class="inputs">
         <div class="div-input" [ngClass]="{ 'error': id.invalid && (id.dirty || id.touched)}">
           <label for="id">ID:</label>
-          <input div type="text" id="id" formControlName="id" />
+          <input type="text" id="id" formControlName="id" [(ngModel)]="idLS" [disabled]="edit"/>
           <div *ngIf="this.registroForm.invalid && (id.dirty || id.touched)">
             <div class="error-message" *ngIf="id.errors?.required">
               El ID es requerido.
@@ -27,7 +27,7 @@
 
         <div class="div-input" [ngClass]="{ 'error': nombre.invalid && (nombre.dirty || nombre.touched)}">
           <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" formControlName="nombre" />
+          <input type="text" id="nombre" formControlName="nombre" [(ngModel)]="nameLS"/>
           <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
             <div class="error-message" *ngIf="nombre.errors?.required">El nombre es requerido.</div>
             <div class="error-message" *ngIf="nombre.errors?.minlength">
@@ -41,7 +41,7 @@
 
         <div class="div-input" [ngClass]="{ 'error': descripcion.invalid && (descripcion.dirty || descripcion.touched)}">
           <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" formControlName="descripcion"></textarea>
+          <textarea id="descripcion" formControlName="descripcion" [(ngModel)]="descriptionLS"></textarea>
           <div
             *ngIf="
               descripcion.invalid && (descripcion.dirty || descripcion.touched)
@@ -61,7 +61,7 @@
 
         <div class="div-input" [ngClass]="{ 'error': logo.invalid && (logo.dirty || logo.touched)}">
           <label for="logo">Logo:</label>
-          <input type="text" id="logo" formControlName="logo" />
+          <input type="text" id="logo" formControlName="logo" [(ngModel)]="logoLS"/>
           <div *ngIf="logo.invalid && (logo.dirty || logo.touched)">
             <div class="error-message" *ngIf="logo.errors?.required">El logo es requerido.</div>
           </div>
@@ -74,6 +74,8 @@
             id="fechaLiberacion"
             formControlName="fechaLiberacion"
             value="date:'dd/MM/yyyy'"
+            [ngModel]="fechaLiberacionLS | date:'yyyy-MM-dd' : 'UTC'"
+            (ngModelChange)="fechaLiberacionLS"
           />
           <div *ngIf="fechaLiberacion.invalid && (fechaLiberacion.dirty || fechaLiberacion.touched)">
             <div class="error-message" *ngIf="logo.errors?.required">La fecha de liberación es requerida.</div>
@@ -83,11 +85,12 @@
         <div class="div-input">
           <label for="fechaRevision">Fecha de Revisión:</label>
           <input
-            type="text"
-            [value]="this.oneYearAfter"
+            [type]="this.oneYearAfter ? 'text' : 'date'"
+            [value]="this.oneYearAfter ? this.oneYearAfter : null"
             id="fechaRevision"
             formControlName="fechaRevision"
-            [disabled]="true"
+            [ngModel]="fechaRevisionLS | date:'dd-MM-yyyy' : 'UTC'"
+            (ngModelChange)="fechaRevisionLS"
           />
         </div>
       </div>
@@ -103,6 +106,7 @@
         buttonColor="primary"
         size="medium"
         [disabled]="registroForm.invalid"
+        (clicked)="submitForm()"
         >
           Enviar
         </app-button>
