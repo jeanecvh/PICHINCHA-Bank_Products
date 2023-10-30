@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/data/services/products.service';
+
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -22,7 +23,7 @@ export class FormularioComponent implements OnInit {
   formSession: any
 
   constructor(
-    @Inject('moment') private moment: any,
+    @Inject('moment') public moment: any,
     private formBuilder: FormBuilder,
     public productService: ProductsService,
     private router:Router
@@ -34,12 +35,12 @@ export class FormularioComponent implements OnInit {
     if(localStorage.getItem('FormId')){
       this.edit = true;
       this.formSession = JSON.parse(localStorage.getItem('FormId'))
-      this.idLS = this.formSession[0].id;
-      this.nameLS = this.formSession[0].name;
-      this.descriptionLS = this.formSession[0].description;
-      this.logoLS = this.formSession[0].logo;
-      this.fechaLiberacionLS = this.formSession[0].date_release
-      this.fechaRevisionLS = this.formSession[0].date_revision
+      this.idLS = this.formSession[0]?.id;
+      this.nameLS = this.formSession[0]?.name;
+      this.descriptionLS = this.formSession[0]?.description;
+      this.logoLS = this.formSession[0]?.logo;
+      this.fechaLiberacionLS = this.formSession[0]?.date_release
+      this.fechaRevisionLS = this.formSession[0]?.date_revision
     }
     this.registroForm = this.formBuilder.group({
       id: [{value: '', disabled: this.edit}, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
@@ -49,8 +50,6 @@ export class FormularioComponent implements OnInit {
       fechaLiberacion: ['', [Validators.required, this.validateMinDate.bind(this)]], //
       fechaRevision: [{value: '', disabled: true}] //
     });
-    console.log(this.idLS );
-
    }
 
    public submitForm() {
