@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { ProductResponseDto } from '../models/products/product.model';
 import { BaseResponse } from '../models/base.model';
 
@@ -14,6 +14,7 @@ export class ProductsService {
 
   httpOptions = {
     headers: new HttpHeaders(this.headers),
+    response: 'text'
   }
 
   URLBase =
@@ -37,6 +38,9 @@ export class ProductsService {
   }
 
   deleteProduct(id: string) {
-    return this.http.delete(`${this.URLBase}?id=${id}`, this.httpOptions);
+    const headers = {
+      authorId: '6',
+    }
+    return this.http.delete(`${this.URLBase}?id=${id}`, {headers: headers, responseType: 'text'})
   }
 }

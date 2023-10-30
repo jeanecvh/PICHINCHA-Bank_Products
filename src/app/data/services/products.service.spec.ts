@@ -61,14 +61,21 @@ fdescribe('ProductsService', () => {
   });
 
   it('should delete a product', () => {
-    const productId = '1';
+    const id = '123';
+    const expectedUrl = `${service.URLBase}?id=${id}`;
+    const expectedHeaders = {
+      authorId: '6',
+    };
 
-    service.deleteProduct(productId).subscribe((response) => {
-      expect(response).toEqual({ success: true });
-    });
+    // Llama a la función a probar
+    service.deleteProduct(id).subscribe();
 
-    const req = httpMock.expectOne(`${service.URLBase}?id=${productId}`);
+    // Verifica que se haya realizado una solicitud DELETE con los parámetros correctos
+    const req = httpMock.expectOne(expectedUrl);
     expect(req.request.method).toBe('DELETE');
-    req.flush({ success: true });
+    expect(req.request.headers.get('authorId')).toBe(expectedHeaders.authorId);
+
+    // Responde a la solicitud con una respuesta vacía
+    req.flush('', { status: 200, statusText: 'OK' });
   });
 });
