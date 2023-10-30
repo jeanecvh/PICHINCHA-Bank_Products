@@ -3,6 +3,8 @@
   color: #3d3d40;
   margin: 0;
   padding: 0;
+  background-color: white;
+  padding: 30px 30px;
 }
 
 .table-container table {
@@ -56,4 +58,8 @@
   background-color: #f0f0f0;
 }
 
+.table-footer{
+  margin-top: 20px;
+  font-weight: bold;
+}
 
