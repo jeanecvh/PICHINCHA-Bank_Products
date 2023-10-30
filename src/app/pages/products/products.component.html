@@ -1,18 +1,21 @@
 <ng-container>
-  <app-button
-buttonColor="secondary"
-size="medium"
-[disabled]="false"
-(clicked)="handleButtonClick()">
-  Agregar
-</app-button>
-<app-table
-  [columns]="tableColumns"
-  [rows]="products"
-  [dropdownIconClass]="dropdownIconClass"
-  [columnIconClass]="columnIconClass"
-  (edit)="editRow($event)"
-  (delete)="deleteRow($event)"
-></app-table>
-
+  <div class="container-input">
+    <input type="text" placeholder="search..."/>
+    <app-button
+      buttonColor="primary"
+      size="medium"
+      [disabled]="false"
+      (clicked)="handleButtonClick()"
+    >
+      Agregar
+    </app-button>
+  </div>
+  <app-table
+    [columns]="tableColumns"
+    [rows]="products"
+    [dropdownIconClass]="dropdownIconClass"
+    [columnIconClass]="columnIconClass"
+    (edit)="editRow($event)"
+    (delete)="deleteRow($event)"
+  ></app-table>
 </ng-container>

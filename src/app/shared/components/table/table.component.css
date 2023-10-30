@@ -21,6 +21,7 @@
 
 .table-container .table-row {
   border-bottom: 1px solid #ccc;
+  background-color: white;
 }
 
 .span,

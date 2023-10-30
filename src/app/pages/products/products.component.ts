@@ -13,24 +13,6 @@ export class ProductsComponent implements OnInit {
   products: ProductResponseDto[] = []
   dropdownIconClass: string = 'fa-solid fa-ellipsis-vertical';
   columnIconClass: string = 'fa-solid fa-circle-exclamation';
-  data = [
-    {
-      logo: "https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg",
-      nombre: "Producto 1",
-      descripcion: "Descripción del Producto 1",
-      fechaLiberacion: "2023-01-01",
-      fechaRestructuracion: "2023-02-15"
-    },
-    {
-      logo: "https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg",
-      nombre: "Producto 2",
-      descripcion: "Descripción del Producto 2",
-      fechaLiberacion: "2023-03-01",
-      fechaRestructuracion: "2023-04-15"
-    },
-    // ...
-  ];
-
   tableColumns: TableColumn[] = [
     { label: "Logo", property: "logo", showIcon:false },
     { label: "Nombre del producto", property: "name", showIcon:false },

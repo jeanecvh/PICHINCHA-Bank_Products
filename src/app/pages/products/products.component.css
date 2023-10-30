@@ -1,0 +1,22 @@
+.container-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-input input {
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  height: 30px;
+  margin: 12px;
+  width: 210px;
+}
+
+.container-input input:focus{
+  border: 1px solid #ccc;
+}
+
+input:focus {
+  outline: unset;
+}
